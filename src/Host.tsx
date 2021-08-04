@@ -1,4 +1,10 @@
-import { Studio, useSocket, startLiveStream, stopLiveStream } from 'stream-sdk';
+import {
+    Studio,
+    useSocket,
+    startLiveStream,
+    stopLiveStream,
+    getLiveStream,
+} from 'stream-sdk';
 import styled from 'styled-components';
 import { Assets } from './components/Assets';
 import { VideoControls } from './components/VideoControls';
@@ -127,6 +133,14 @@ export const Host = () => {
         };
     }, [socket]);
 
+    useEffect(() => {
+        getLiveStream(liveStreamId)
+            .then((liveStream) => {
+                setIsLive(liveStream.live);
+            })
+            .catch((error) => console.error(error));
+    }, []);
+
     const goLive = async () => {
         await startLiveStream(liveStreamId, streamTokenId, streamTokenSecret);
         setIsLoading(true);
@@ -164,6 +178,15 @@ export const Host = () => {
                         {!isLoading ? 'Stop Livestream' : 'Stopping'}
                         {isLoading && <LoadingPeriods />}
                     </SecondaryButton>
+                )}
+                {isLive && (
+                    <a
+                        href={`/player?liveStreamId=${liveStreamId}`}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        View Player
+                    </a>
                 )}
                 <AssetContainer>
                     <Assets liveStreamId={liveStreamId} token={token}></Assets>

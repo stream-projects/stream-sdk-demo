@@ -242,7 +242,7 @@ export const Home = () => {
                                 active={nav === 'token'}
                                 onClick={() => setNav('token')}
                             >
-                                Use exisiting live stream
+                                Use existing live stream
                             </Nav>
                         </NavContainer>
 

@@ -61,13 +61,29 @@ export const VideoControls = () => {
         setScreenEnabled(enabled);
     };
 
+    const fetchMediaDevices = async () => {
+        const mediaDeviceList = await callRef.current.enumerateDevices();
+        setMediaDevices(mediaDeviceList.devices);
+    };
+
+    navigator.mediaDevices.ondevicechange = function () {
+        fetchMediaDevices();
+    };
+
+    useEffect(() => {
+        let loop = setInterval(() => {
+            if (callRef.current) {
+                fetchMediaDevices();
+            }
+        }, 5000);
+
+        return () => {
+            clearInterval(loop);
+        };
+    }, []);
+
     useEffect(() => {
         if (callRef.current) {
-            const fetchMediaDevices = async () => {
-                const mediaDeviceList =
-                    await callRef.current.enumerateDevices();
-                setMediaDevices(mediaDeviceList.devices);
-            };
             fetchMediaDevices();
 
             // Handle events where a device is disabled outside of our tab.
