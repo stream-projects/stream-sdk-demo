@@ -236,13 +236,13 @@ export const Home = () => {
                                 active={nav === 'livestream'}
                                 onClick={() => setNav('livestream')}
                             >
-                                Create a Livestream
+                                Create a live stream
                             </Nav>
                             <Nav
                                 active={nav === 'token'}
                                 onClick={() => setNav('token')}
                             >
-                                Create a token
+                                Use exisiting live stream
                             </Nav>
                         </NavContainer>
 
@@ -300,8 +300,8 @@ export const Home = () => {
                         {nav === 'token' && (
                             <>
                                 <p>
-                                    If you've already created a live stream, you
-                                    can access it using the id here:
+                                    Please enter your API credentials and token
+                                    information:
                                 </p>
                                 <SectionContainer>
                                     <InputsContainer>
