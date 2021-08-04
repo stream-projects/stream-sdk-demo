@@ -1,0 +1,73 @@
+{
+    "name": "stream-sdk-demo",
+    "version": "1.0.0",
+    "license": "MIT",
+    "description": "Easily embeddable in-browser live streaming with React",
+    "homepage": "https://www.stream.club/cloud",
+    "private": true,
+    "dependencies": {
+        "@daily-co/daily-js": "^0.14.0",
+        "axios": "^0.21.1",
+        "gifler": "^0.1.0",
+        "gifuct-js": "^2.1.1",
+        "konva": "^8.1.1",
+        "prettier": "^2.3.2",
+        "react": "^17.0.2",
+        "react-color": "^2.19.3",
+        "react-dom": "^17.0.2",
+        "react-konva": "^17.0.2-4",
+        "react-konva-utils": "^0.1.6",
+        "react-range": "^1.8.9",
+        "react-router-dom": "^5.2.0",
+        "react-scripts": "4.0.3",
+        "react-sizeme": "^3.0.1",
+        "react-switch": "^6.0.0",
+        "react-tooltip": "^4.2.21",
+        "socket.io-client": "^4.1.2",
+        "stream-sdk": "^1.0.4",
+        "styled-components": "^5.3.0",
+        "typescript": "^4.1.2",
+        "use-image": "^1.0.7",
+        "video.js": "^7.14.3",
+        "web-vitals": "^1.0.1"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@testing-library/jest-dom": "^5.11.4",
+        "@testing-library/react": "^11.1.0",
+        "@testing-library/user-event": "^12.1.10",
+        "@types/jest": "^26.0.15",
+        "@types/node": "^12.0.0",
+        "@types/react": "^17.0.0",
+        "@types/react-dom": "^17.0.0",
+        "@types/react-router-dom": "^5.1.8",
+        "@types/socket.io-client": "^3.0.0",
+        "@types/styled-components": "^5.1.11",
+        "@types/video.js": "^7.3.26",
+        "customize-cra": "^1.0.0",
+        "react-app-rewired": "^2.1.8"
+    }
+}
