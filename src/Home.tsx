@@ -4,7 +4,7 @@ import { createLiveStream, createToken, createAsset } from 'stream-sdk';
 import styled from 'styled-components';
 
 const Page = styled.div`
-    font-family: Arial, sans-serif;
+    font-family: Inter, Arial, sans-serif;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -14,15 +14,97 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 15%;
+    justify-content: center;
     width: 100%;
-    input,
-    select,
-    button {
-        margin-right: 0.5rem;
+    padding: 2rem 3rem;
+`;
+const SectionContainer = styled.div`
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    width: 100%;
+`;
+const InputsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    width: 300px;
+`;
+const Input = styled.input`
+    border: 0;
+    border: 2px solid black;
+    border-radius: 3px;
+    box-shadow: 1px 1px 0px black;
+    font-size: 14px;
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+
+    &::placeholder {
+        color: black;
+        opacity: 1;
     }
 `;
+const Select = styled.select`
+    border: 0;
+    border: 2px solid black;
+    border-radius: 3px;
+    box-shadow: 1px 1px 0px black;
+    font-size: 14px;
+    padding: 0.5em;
+`;
+const CreateDemoAssetsDiv = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 14px;
+    margin-top: 0.5em;
+    padding: 0.5em;
+    padding-right: 0;
+`;
+const InputCheckbox = styled.input`
+    border: 2px solid black;
+    font-size: 16px;
+    margin-left: 0.5em;
+`;
+const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: flex-end;
 
+    width: 100%;
+`;
+const Button = styled.button`
+    background: #704cf1;
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+    display: inline;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+`;
+const NavContainer = styled.div`
+    display: flex;
+    border: 1px solid #704cf1;
+    border-radius: 3px;
+    overflow: hidden;
+`;
+interface NavProps {
+    active?: boolean;
+}
+const Nav = styled.div<NavProps>`
+    background: ${(props) => (props.active ? '#704cf1' : 'white')};
+    color: ${(props) => (props.active ? 'white' : '#704cf1')};
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 1em 1.5em;
+`;
 const demoAssets = [
     {
         type: 'BACKGROUND',
@@ -75,6 +157,7 @@ export const Home = () => {
     const [liveStreamId, setLivestreamId] = useState(null);
     const [streamTokenId, setStreamTokenId] = useState(null);
     const [streamTokenSecret, setStreamTokenSecret] = useState(null);
+    const [nav, setNav] = useState('livestream');
 
     const createLiveStreamButton = async (e) => {
         e.preventDefault();
@@ -147,69 +230,119 @@ export const Home = () => {
                             Before using this demo, we're going to need to
                             create a live stream and a token.
                         </h3>
-                        <p>
-                            Please enter your API credentials and token
-                            information:
-                        </p>
-                        <div>
-                            <input
-                                id="streamTokenId"
-                                placeholder="streamTokenId"
-                            ></input>
-                            <input
-                                id="streamTokenSecret"
-                                placeholder="streamTokenSecret"
-                            ></input>
-                            <input id="user_id" placeholder="User Id"></input>
-                            <input
-                                id="user_name"
-                                placeholder="Username"
-                            ></input>
-                            <select id="user_type">
-                                <option value="host">Host</option>
-                                <option value="cohost">Cohost</option>
-                            </select>
-                            Create Demo Assets
-                            <input
-                                type="checkbox"
-                                id="demo_assets"
-                                defaultChecked={true}
-                            ></input>
-                            <button onClick={createLiveStreamButton}>
-                                Create
-                            </button>
-                        </div>
-                        <p>
-                            If you've already created a live stream, you can
-                            access it using the id here:
-                        </p>
-                        <div>
-                            <input
-                                id="streamTokenId2"
-                                placeholder="streamTokenId"
-                            ></input>
-                            <input
-                                id="streamTokenSecret2"
-                                placeholder="streamTokenSecret"
-                            ></input>
-                            <input id="user_id2" placeholder="User Id"></input>
-                            <input
-                                id="user_name2"
-                                placeholder="Username"
-                            ></input>
-                            <select id="user_type2">
-                                <option value="host">Host</option>
-                                <option value="cohost">Cohost</option>
-                            </select>
 
-                            <input
-                                id="liveStreamId"
-                                placeholder="liveStreamId"
-                            ></input>
-                            <button onClick={accessLiveStreamButton}>
-                                Access
-                            </button>
-                        </div>
+                        <NavContainer>
+                            <Nav
+                                active={nav === 'livestream'}
+                                onClick={() => setNav('livestream')}
+                            >
+                                Create a Livestream
+                            </Nav>
+                            <Nav
+                                active={nav === 'token'}
+                                onClick={() => setNav('token')}
+                            >
+                                Create a token
+                            </Nav>
+                        </NavContainer>
+
+                        {nav === 'livestream' && (
+                            <>
+                                <p>
+                                    Please enter your API credentials and token
+                                    information:
+                                </p>
+
+                                <SectionContainer>
+                                    <InputsContainer>
+                                        <Input
+                                            id="streamTokenId"
+                                            placeholder="streamTokenId"
+                                        />
+                                        <Input
+                                            id="streamTokenSecret"
+                                            placeholder="streamTokenSecret"
+                                        />
+                                        <Input
+                                            id="user_id"
+                                            placeholder="User Id"
+                                        />
+                                        <Input
+                                            id="user_name"
+                                            placeholder="Username"
+                                        />
+                                        <Select id="user_type">
+                                            <option value="host">Host</option>
+                                            <option value="cohost">
+                                                Cohost
+                                            </option>
+                                        </Select>
+                                        <CreateDemoAssetsDiv>
+                                            Create Demo Assets
+                                            <InputCheckbox
+                                                type="checkbox"
+                                                id="demo_assets"
+                                                defaultChecked={true}
+                                            />
+                                        </CreateDemoAssetsDiv>
+
+                                        <ButtonContainer>
+                                            <Button
+                                                onClick={createLiveStreamButton}
+                                            >
+                                                Create
+                                            </Button>
+                                        </ButtonContainer>
+                                    </InputsContainer>
+                                </SectionContainer>
+                            </>
+                        )}
+                        {nav === 'token' && (
+                            <>
+                                <p>
+                                    If you've already created a live stream, you
+                                    can access it using the id here:
+                                </p>
+                                <SectionContainer>
+                                    <InputsContainer>
+                                        <Input
+                                            id="streamTokenId2"
+                                            placeholder="streamTokenId"
+                                        />
+                                        <Input
+                                            id="streamTokenSecret2"
+                                            placeholder="streamTokenSecret"
+                                        />
+                                        <Input
+                                            id="user_id2"
+                                            placeholder="User Id"
+                                        />
+                                        <Input
+                                            id="user_name2"
+                                            placeholder="Username"
+                                        />
+                                        <Input
+                                            id="liveStreamId"
+                                            placeholder="liveStreamId"
+                                        />
+                                        <Select id="user_type2">
+                                            <option value="host">Host</option>
+                                            <option value="cohost">
+                                                Cohost
+                                            </option>
+                                        </Select>
+
+                                        <ButtonContainer>
+                                            <Button
+                                                onClick={accessLiveStreamButton}
+                                            >
+                                                Access
+                                            </Button>
+                                        </ButtonContainer>
+                                    </InputsContainer>
+                                </SectionContainer>
+                            </>
+                        )}
                     </>
                 )}
                 {token && (
