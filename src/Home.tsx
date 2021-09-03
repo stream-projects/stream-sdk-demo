@@ -35,7 +35,7 @@ const InputsContainer = styled.div`
 const InputLabel = styled.div`
     font-weight: 700;
     margin-left: 0.25em;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.35em;
 `;
 const Input = styled.input`
     background: #f6f8fa;
@@ -339,38 +339,74 @@ export const Home = () => {
                         )}
                         {nav === 'token' && (
                             <>
-                                <p>
-                                    Please enter your API credentials and token
-                                    information:
-                                </p>
                                 <SectionContainer>
+                                    <p style={{marginBottom: '1.5em'}}>
+                                        Please enter your API credentials and token
+                                        information:
+                                    </p>
                                     <InputsContainer>
+                                    <InputLabel>
+                                            Stream TokenID
+                                        </InputLabel>
                                         <Input
                                             id="streamTokenId2"
-                                            placeholder="streamTokenId"
                                         />
+                                        <InputDesc>
+                                        Your Stream Club Cloud API key
+                                        </InputDesc>
+
+                                        <InputLabel>
+                                            Stream Token Secret
+                                        </InputLabel>
                                         <Input
                                             id="streamTokenSecret2"
-                                            placeholder="streamTokenSecret"
                                         />
+                                        <InputDesc>
+                                        Your Stream Club Cloud API secret. Please don’t commit code with this!
+                                        </InputDesc>
+
+                                        <InputLabel>
+                                            User ID
+                                        </InputLabel>
                                         <Input
                                             id="user_id2"
-                                            placeholder="User Id"
                                         />
+                                        <InputDesc>
+                                        A user id to identify the user in your application. Can be any string.
+                                        </InputDesc>
+
+                                        <InputLabel>
+                                            Username
+                                        </InputLabel>
                                         <Input
                                             id="user_name2"
-                                            placeholder="Username"
                                         />
+                                        <InputDesc>
+                                        A display name for your user. Used in the UI.
+                                        </InputDesc>
+
+                                        <InputLabel>
+                                            Livestream ID
+                                        </InputLabel>
                                         <Input
                                             id="liveStreamId"
-                                            placeholder="liveStreamId"
                                         />
+                                        <InputDesc>
+                                        The ID of a live stream created via the API
+                                        </InputDesc>
+
+                                        <InputLabel>
+                                            Host
+                                        </InputLabel>
                                         <Select id="user_type2">
                                             <option value="host">Host</option>
                                             <option value="cohost">
                                                 Cohost
                                             </option>
                                         </Select>
+                                        <InputDesc>
+                                        User type. A host will have write access to the livestream while cohosts will only have read access.
+                                        </InputDesc>
 
                                         <ButtonContainer>
                                             <Button
