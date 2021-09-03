@@ -19,48 +19,57 @@ const Container = styled.div`
     padding: 2rem 3rem;
 `;
 const SectionContainer = styled.div`
-    background: rgba(0, 0, 0, 0.05);
     border-radius: 3px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 0rem;
     width: 100%;
 `;
 const InputsContainer = styled.div`
     display: flex;
     flex-direction: column;
     min-width: 200px;
-    width: 300px;
+    width: 400px;
+`;
+const InputLabel = styled.div`
+    font-weight: 700;
+    margin-left: 0.25em;
+    margin-bottom: 0.5em;
 `;
 const Input = styled.input`
+    background: #f6f8fa;
     border: 0;
-    border: 2px solid black;
+    border: 1px solid  #f6f8fa;
     border-radius: 3px;
-    box-shadow: 1px 1px 0px black;
-    font-size: 14px;
-    margin-bottom: 0.5em;
-    padding: 0.5em;
+    font-size: 16px;
+    padding: 0.75em;
 
     &::placeholder {
         color: black;
         opacity: 1;
     }
 `;
-const Select = styled.select`
-    border: 0;
-    border: 2px solid black;
-    border-radius: 3px;
-    box-shadow: 1px 1px 0px black;
+const InputDesc = styled.div`
     font-size: 14px;
+    margin-top: 0.25em;
+    margin-bottom: 1.5em;
+    margin-left: 0.25em;
+    line-height: 1.5;
+`;
+const Select = styled.select`
+background: #f6f8fa;
+border: 0;
+    border: 1px solid #f6f8fa;;
+    border-radius: 3px;
+    font-size: 16px;
     padding: 0.5em;
 `;
 const CreateDemoAssetsDiv = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    font-size: 14px;
+    font-size: 16px;
     margin-top: 0.5em;
     padding: 0.5em;
     padding-right: 0;
@@ -83,10 +92,10 @@ const Button = styled.button`
     cursor: pointer;
     color: white;
     display: inline;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     margin-top: 0.5rem;
-    padding: 0.5rem 1rem;
+    padding: 0.65em 1.25em;
 `;
 const NavContainer = styled.div`
     display: flex;
@@ -248,35 +257,66 @@ export const Home = () => {
 
                         {nav === 'livestream' && (
                             <>
-                                <p>
-                                    Please enter your API credentials and token
-                                    information:
-                                </p>
-
                                 <SectionContainer>
+                                    <p style={{marginBottom: '1.5em'}}>
+                                        Please enter your API credentials and token
+                                        information:
+                                    </p>
+
                                     <InputsContainer>
+                                        <InputLabel>
+                                            Stream TokenID
+                                        </InputLabel>
                                         <Input
                                             id="streamTokenId"
-                                            placeholder="streamTokenId"
                                         />
+                                        <InputDesc>
+                                        Your Stream Club Cloud API key
+                                        </InputDesc>
+
+                                        <InputLabel>
+                                            Stream Token Secret
+                                        </InputLabel>
                                         <Input
                                             id="streamTokenSecret"
-                                            placeholder="streamTokenSecret"
                                         />
+                                        <InputDesc>
+                                        Your Stream Club Cloud API secret. Please don’t commit code with this!
+                                        </InputDesc>
+
+                                        <InputLabel>
+                                            User ID
+                                        </InputLabel>
                                         <Input
                                             id="user_id"
-                                            placeholder="User Id"
                                         />
+                                        <InputDesc>
+                                        A user id to identify the user in your application. Can be any string.
+                                        </InputDesc>
+
+                                        <InputLabel>
+                                            Username
+                                        </InputLabel>
                                         <Input
                                             id="user_name"
-                                            placeholder="Username"
                                         />
+                                        <InputDesc>
+                                        A display name for your user. Used in the UI.
+                                        </InputDesc>
+
+                                        <InputLabel>
+                                            Host
+                                        </InputLabel>
                                         <Select id="user_type">
                                             <option value="host">Host</option>
                                             <option value="cohost">
                                                 Cohost
                                             </option>
                                         </Select>
+                                        <InputDesc>
+                                        User type. A host will have write access to the livestream while cohosts will only have read access.
+                                        </InputDesc>
+
                                         <CreateDemoAssetsDiv>
                                             Create Demo Assets
                                             <InputCheckbox
