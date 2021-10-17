@@ -21,6 +21,16 @@ export const VideoJS = (props) => {
                 player.src(options.src);
                 player.poster(options.post);
             });
+
+            player.on('progress', () => {
+                if (player.textTracks()[0]?.activeCues_[0]) {
+                    const serverTime =
+                        player.textTracks()[0].activeCues_[0].value
+                            .dateTimeObject;
+                    const diff = new Date().getTime() - serverTime.getTime();
+                    console.log('Video delay', diff / 1000);
+                }
+            });
         }
         return () => {
             if (player) {

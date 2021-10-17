@@ -6,6 +6,7 @@ import { Host } from './Host';
 import { Cohost } from './Cohost';
 import { Player } from './Player';
 import { Home } from './Home';
+import { IFrame } from './iFrame';
 
 ReactDOM.render(
     <React.StrictMode>
@@ -20,6 +21,9 @@ ReactDOM.render(
                     </Route>
                     <Route path="/cohost">
                         <Cohost />
+                    </Route>
+                    <Route path="/iframe">
+                        <IFrame />
                     </Route>
                     <Route path="/player">
                         <Player />
